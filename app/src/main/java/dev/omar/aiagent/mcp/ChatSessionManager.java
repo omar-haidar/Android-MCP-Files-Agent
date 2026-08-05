@@ -11,7 +11,7 @@ public class ChatSessionManager {
 
     private final List<JSONObject> conversationHistory;
     private int maxWindowSize;
-    private boolean isMemoryEnabled; // 🟢 متغير التحكم بتفعيل أو تعطيل الذاكرة
+    private boolean isMemoryEnabled;
 
     public ChatSessionManager(int maxWindowSize, boolean isMemoryEnabled) {
         this.conversationHistory = new ArrayList<>();
@@ -20,7 +20,7 @@ public class ChatSessionManager {
     }
 
     public ChatSessionManager() {
-        this(10, true); // افتراضياً الذاكرة مفعلة بحد 10 رسائل
+        this(10, true);
     }
 
     /**
@@ -29,7 +29,7 @@ public class ChatSessionManager {
     public void setMemoryEnabled(boolean memoryEnabled) {
         this.isMemoryEnabled = memoryEnabled;
         if (!memoryEnabled) {
-            clearHistory(); // مسح السجل فوراً عند التعطيل
+            clearHistory();
         }
     }
 

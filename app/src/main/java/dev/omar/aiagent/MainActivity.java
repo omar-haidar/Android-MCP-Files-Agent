@@ -1,5 +1,7 @@
 package dev.omar.aiagent;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+        binding.toolbar.setSubtitle(App.getModelId());
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         markwon = Markwon.builder(this)
@@ -48,14 +51,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        mainViewModel.executePrompt("اعرض لي خدماتك و ادواتك المتاحة");
+        mainViewModel.executePrompt("preview your tools");
+        App.get().getConfigs().setModelChangedListener(model->{
+            binding.toolbar.setSubtitle(model);
+        });
+
 
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (menu.findItem(R.id.menu_Item_use_memory) != null) {
-            menu.findItem(R.id.menu_Item_use_memory).setChecked(App.get().getConfigs().isMemoryEnabled());
+        if (menu.findItem(R.id.menu_item_use_memory) != null) {
+            menu.findItem(R.id.menu_item_use_memory).setChecked(App.get().getConfigs().isMemoryEnabled());
+        }
+        if (menu.findItem(R.id.menu_item_reload) != null) {
+            menu.findItem(R.id.menu_item_reload).setEnabled(mainViewModel.canChat().getValue());
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -68,14 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_Item_show_apikey) {
-            App.showApiKey(MainActivity.this);
-        } else if (item.getItemId() == R.id.menu_Item_show_models) {
+        if (item.getItemId() == R.id.menu_item_change_apikey) {
+            SetApiKeyActivity.changeApiKey(MainActivity.this);
+        } else if (item.getItemId() == R.id.menu_item_change_model) {
             new ModelsBottomSheet().show(getSupportFragmentManager(), "Models");
-        } else if (item.getItemId() == R.id.menu_Item_use_memory) {
+        } else if (item.getItemId() == R.id.menu_item_use_memory) {
             App.get().getConfigs().setMemoryEnabled(!item.isChecked());
             item.setChecked(!item.isChecked());
             mainViewModel.getAgent().setMemoryEnabled(item.isChecked());
+        } else if (item.getItemId() == R.id.menu_item_about) {
+           App.showAboutDialog(MainActivity.this);
+        }else if (item.getItemId() == R.id.menu_item_reload) {
+            mainViewModel.executePrompt("preview your tools");
         }
         return super.onOptionsItemSelected(item);
     }

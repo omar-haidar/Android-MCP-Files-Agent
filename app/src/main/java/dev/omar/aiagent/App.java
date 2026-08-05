@@ -2,9 +2,10 @@ package dev.omar.aiagent;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -23,34 +24,40 @@ public class App extends Application {
         sApp = this;
         System.setProperty("API_KEY",getConfigs().getApiKey());
         System.setProperty("MODEL_URL",getConfigs().getModelUrl());
-        System.setProperty("MODEL_ID",getConfigs().getGeminiModel());
+        System.setProperty("MODEL_ID", getConfigs().getGeminiModel());
         MAIN_HANDLER.postAtFrontOfQueue(new PartCrashHandler(this));
     }
 
     public static App get(){
         return sApp;
     }
-
     public Configs getConfigs() {
         if (mConfigs == null) {
             mConfigs = new Configs(this);
         }
         return mConfigs;
     }
-
-    public static void showApiKey(Context context) {
-        new MaterialAlertDialogBuilder(context)
-                .setTitle("API Key")
-                .setMessage(getApiKey())
-                .setPositiveButton("OK", null)
-                .create().show();
-    }
-
     public static String getApiKey() {
         return System.getProperty("API_KEY");
     }
     public static String getModelUrl() {
         return System.getProperty("MODEL_URL");
+    }
+    public static void showAboutDialog(final Context context){
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("About Files AiAgent")
+                .setMessage("An experimental AI assistant that integrates Google Gemini with the Model Context Protocol (MCP) to help you manage your files efficiently.\n\n" +
+                        "This project is currently under slow development and is intended for testing and demonstration purposes.\n\n" +
+                        "Developed by Omar.")
+                .setPositiveButton("Close", null)
+                .setNeutralButton("GITHUB",(d,i)->{
+                    String url = "https://github.com/omar-haidar/Android-MCP-Files-Agent";
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
+                })
+                .setIcon(R.mipmap.ic_launcher)
+                .show();
     }
     public static String getModelId() {
         return System.getProperty("MODEL_ID");

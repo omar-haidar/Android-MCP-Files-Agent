@@ -25,6 +25,8 @@
         android:indeterminate="true"
         app:waveAmplitude="1dp"
         app:wavelength="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -4,10 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 public class Configs {
     private Context context;
     private SharedPreferences sharedPreferences;
+
+    private ModelChangedListener modelChangedListener;
+    public interface ModelChangedListener {
+        void onModelChanged(String model);
+    }
+
+    public void setModelChangedListener(ModelChangedListener modelChangedListener){
+        this.modelChangedListener = modelChangedListener;
+    }
 
     public Configs(@NonNull Context context) {
         this.context = context;
@@ -41,6 +53,10 @@ public class Configs {
 
     public void setGeminiModel(String model) {
         sharedPreferences.edit().putString("gemini_model", model).apply();
+        System.setProperty("MODEL_ID",model);
+        if(modelChangedListener != null){
+            modelChangedListener.onModelChanged(model);
+        }
     }
 
     public String getModelUrl() {

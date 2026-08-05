@@ -2,28 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_Item_configs"
+        android:id="@+id/menu_item_configs"
         android:title="Configs">
         <menu>
 
-
             <item
-                android:id="@+id/menu_Item_use_memory"
+                android:id="@+id/menu_item_use_memory"
                 android:checkable="true"
                 android:title="Memory" />
+
+            <item
+                android:id="@+id/menu_item_change_model"
+                android:title="Model" />
+            <item
+                android:id="@+id/menu_item_change_apikey"
+                android:title="Change Api Key" />
 
         </menu>
 
 
     </item>
-
     <item
-        android:id="@+id/menu_Item_show_models"
-        android:title="Models" />
-
+        android:id="@+id/menu_item_reload"
+        android:title="Reload" />
     <item
-        android:id="@+id/menu_Item_show_apikey"
-        android:title="API Key" />
-
-
+        android:id="@+id/menu_item_about"
+        android:title="About" />
 </menu>

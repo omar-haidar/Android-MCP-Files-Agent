@@ -39,7 +39,7 @@ public class ModelsAdapter extends ListAdapter<GeminiModel, ModelsAdapter.Models
             this.binding = binding;
         }
 
-        public void bind(GeminiModel model) {
+        public void bind(@NonNull GeminiModel model) {
             binding.name.setText(model.getDisplayName());
             final String modelId = model.getName().replace("models/", "");
             binding.summary.setText(modelId);
@@ -47,6 +47,10 @@ public class ModelsAdapter extends ListAdapter<GeminiModel, ModelsAdapter.Models
                     MaterialColors.getColor(binding.card, com.google.android.material.R.attr.colorPrimaryContainer) :
                     Color.TRANSPARENT);
 
+            binding.container.setOnClickListener(v->{
+                App.get().getConfigs().setGeminiModel(modelId);
+                notifyDataSetChanged();
+            });
         }
     }
 }

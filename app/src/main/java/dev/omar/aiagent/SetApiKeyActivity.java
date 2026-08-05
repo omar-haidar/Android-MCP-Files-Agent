@@ -1,5 +1,6 @@
 package dev.omar.aiagent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,15 +25,21 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class SetApiKeyActivity extends BaseActivity {
-
+    public static final String EXTRA_API_KEY = "dev.omar.aiagent.EXTRA_API_KEY";
     private ActivitySetApiKeyBinding binding;
     private final OkHttpClient client = new OkHttpClient();
+
+    private boolean isChangeApiKeyMode = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySetApiKeyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        isChangeApiKeyMode = getIntent().hasExtra(EXTRA_API_KEY);
+        if (isChangeApiKeyMode) {
+            binding.txtInputText.setText(getIntent().getStringExtra(EXTRA_API_KEY));
+        }
 
         binding.btnSave.setOnClickListener(v -> {
             String apiKey = binding.txtInputText.getText().toString().trim();
@@ -48,6 +55,12 @@ public class SetApiKeyActivity extends BaseActivity {
             intent.setData(Uri.parse(url));
             startActivity(intent);
         });
+    }
+
+    public static void changeApiKey(Context context) {
+        Intent intent = new Intent(context, SetApiKeyActivity.class);
+        intent.putExtra(EXTRA_API_KEY, App.getApiKey());
+        context.startActivity(intent);
     }
 
     private void validateAndSaveApiKey(String apiKey) {
@@ -92,7 +105,9 @@ public class SetApiKeyActivity extends BaseActivity {
                     if (response.isSuccessful()) {
                         App.get().getConfigs().setApikey(apiKey);
                         Toast.makeText(SetApiKeyActivity.this, "API Key is valid and saved!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SetApiKeyActivity.this, MainActivity.class));
+                        if(isChangeApiKeyMode){
+                            startActivity(new Intent(SetApiKeyActivity.this, MainActivity.class));
+                        }
                         finish();
                     } else {
                         Toast.makeText(SetApiKeyActivity.this, "Invalid API Key or Error", Toast.LENGTH_SHORT).show();
