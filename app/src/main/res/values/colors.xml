@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Theme Colors -->
+    <color name="karbon_primary">#FF445E91</color>
+    <color name="karbon_on_primary">#FFFFFFFF</color>
+    <color name="karbon_primary_container">#FFD8E2FF</color>
+    <color name="karbon_on_primary_container">#FF001A41</color>
+    <color name="karbon_secondary">#FF575E71</color>
+    <color name="karbon_on_secondary">#FFFFFFFF</color>
+    <color name="karbon_secondary_container">#FFDBE2F9</color>
+    <color name="karbon_on_secondary_container">#FF141B2C</color>
+    <color name="karbon_tertiary">#FF715573</color>
+    <color name="karbon_on_tertiary">#FFFFFFFF</color>
+    <color name="karbon_tertiary_container">#FFFBD7FC</color>
+    <color name="karbon_on_tertiary_container">#FF29132D</color>
+    <color name="karbon_error">#FFBA1A1A</color>
+    <color name="karbon_error_container">#FFFFDAD6</color>
+    <color name="karbon_on_error">#FFFFFFFF</color>
+    <color name="karbon_on_error_container">#FF410002</color>
+    <color name="karbon_background">#FFF9F9FF</color>
+    <color name="karbon_on_background">#FF1A1B20</color>
+    <color name="karbon_surface">#FFF9F9FF</color>
+    <color name="karbon_on_surface">#FF1A1B20</color>
+    <color name="karbon_surface_variant">#FFE1E2EC</color>
+    <color name="karbon_on_surface_variant">#FF44474F</color>
+    <color name="karbon_outline">#FF74777F</color>
+    <color name="karbon_outline_variant">#FFC4C6D0</color>
+    <color name="karbon_inverse_on_surface">#FFF0F0F7</color>
+    <color name="karbon_inverse_surface">#FF2F3036</color>
+    <color name="karbon_inverse_primary">#FFADC6FF</color>
+    <color name="karbon_surface_tint">#FF445E91</color>
+    <color name="karbon_scrim">#FF000000</color>
+</resources>

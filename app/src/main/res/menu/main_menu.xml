@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_Item_configs"
+        android:title="Configs">
+        <menu>
+
+
+            <item
+                android:id="@+id/menu_Item_use_memory"
+                android:checkable="true"
+                android:title="Memory" />
+
+        </menu>
+
+
+    </item>
+
+    <item
+        android:id="@+id/menu_Item_show_models"
+        android:title="Models" />
+
+    <item
+        android:id="@+id/menu_Item_show_apikey"
+        android:title="API Key" />
+
+
+</menu>
