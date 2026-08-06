@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import dev.omar.aiagent.mcp.service.file.FileOperationsService;
-import dev.omar.aiagent.mcp.tool.McpTool;
 
 public class CopyFileTool extends BaseFileTool {
     public CopyFileTool(FileOperationsService fileService) {

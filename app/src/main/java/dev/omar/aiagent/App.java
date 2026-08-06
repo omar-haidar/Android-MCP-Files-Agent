@@ -12,6 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import dev.omar.aiagent.ui.crash.CrashActivity;
 import dev.omar.aiagent.utils.Configs;
 
 public class App extends Application {
@@ -25,7 +26,8 @@ public class App extends Application {
         System.setProperty("API_KEY",getConfigs().getApiKey());
         System.setProperty("MODEL_URL",getConfigs().getModelUrl());
         System.setProperty("MODEL_ID", getConfigs().getGeminiModel());
-        MAIN_HANDLER.postAtFrontOfQueue(new PartCrashHandler(this));
+        //MAIN_HANDLER.postAtFrontOfQueue(new PartCrashHandler(this));
+        CrashActivity.init(this);
     }
 
     public static App get(){

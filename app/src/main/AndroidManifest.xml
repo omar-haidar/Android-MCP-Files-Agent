@@ -38,6 +38,10 @@
             android:name=".SetApiKeyActivity"
             android:configChanges="orientation"
             android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.crash.CrashActivity"
+            android:configChanges="orientation"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

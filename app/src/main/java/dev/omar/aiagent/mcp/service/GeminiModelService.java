@@ -1,16 +1,16 @@
 package dev.omar.aiagent.mcp.service;
 
 
-import dev.omar.aiagent.mcp.model.GeminiModel;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dev.omar.aiagent.mcp.model.GeminiModel;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class GeminiModelService implements IGeminiModelService {
 

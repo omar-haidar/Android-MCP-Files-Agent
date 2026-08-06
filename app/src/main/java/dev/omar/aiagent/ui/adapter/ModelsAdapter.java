@@ -42,7 +42,7 @@ public class ModelsAdapter extends ListAdapter<GeminiModel, ModelsAdapter.Models
         public void bind(@NonNull GeminiModel model) {
             binding.name.setText(model.getDisplayName());
             final String modelId = model.getName().replace("models/", "");
-            binding.summary.setText(modelId);
+            binding.summary.setText(modelId+" > "+model.getSupportedGenerationMethods().toString());
             binding.card.setCardBackgroundColor(modelId.equals(App.getModelId()) ?
                     MaterialColors.getColor(binding.card, com.google.android.material.R.attr.colorPrimaryContainer) :
                     Color.TRANSPARENT);

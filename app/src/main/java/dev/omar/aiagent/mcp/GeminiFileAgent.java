@@ -64,9 +64,7 @@ public class GeminiFileAgent {
         return systemInstruction;
     }
 
-    /**
-     * 🔘 التحكم بتفعيل أو تعطيل الذاكرة ديناميكياً
-     */
+
     public void setMemoryEnabled(boolean enable) {
         chatSession.setMemoryEnabled(enable);
     }
@@ -140,7 +138,7 @@ public class GeminiFileAgent {
 
         return new JSONObject()
                 .put("system_instruction", systemInstructionObj)
-                .put("contents", chatSession.getHistoryAsJsonArray()) // 🟢 إرسال مصفوفة السياق كاملة
+                .put("contents", chatSession.getHistoryAsJsonArray())
                 .put("tools", toolRegistry.getToolsDeclarationAsJson());
     }
 

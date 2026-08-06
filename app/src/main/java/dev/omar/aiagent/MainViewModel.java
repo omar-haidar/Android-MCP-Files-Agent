@@ -1,14 +1,11 @@
 package dev.omar.aiagent;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import dev.omar.aiagent.mcp.GeminiFileAgent;
 

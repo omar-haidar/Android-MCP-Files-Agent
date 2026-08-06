@@ -44,7 +44,7 @@ public class ChatSessionManager {
 
     public void addUserMessage(String text) {
         if (!isMemoryEnabled) {
-            clearHistory(); // إذا كانت الذاكرة معطلة، احتفظ فقط بالطلب الحالي
+            clearHistory();
         }
 
         try {
@@ -63,7 +63,7 @@ public class ChatSessionManager {
     }
 
     public void addModelResponse(JSONObject candidateContent) {
-        if (!isMemoryEnabled) return; // لا تقم بحفظ الاستجابة إذا كانت الذاكرة معطلة
+        if (!isMemoryEnabled) return;
 
         try {
             if (candidateContent.has("parts")) {
@@ -79,7 +79,7 @@ public class ChatSessionManager {
     }
 
     public void addFunctionResponse(String toolName, String jsonResult) {
-        // الاستجابة الخاصة بالأدوات مطلوبة مؤقتاً لتمرير النتيجة للنموذج حتى لو كانت الذاكرة معطلة
+
         try {
             JSONObject responseFunctionPart = new JSONObject()
                     .put("functionResponse", new JSONObject()
